@@ -37,3 +37,13 @@ sky:
     admin-ttl: 7200000
     # 设置前端传递过来的令牌名称
     admin-token-name: token
+
+
+
+#mybatis:
+#  configuration:
+#    map-underscore-to-camel-case: true
+#
+#  这句的作用是： 开启数据库字段名和 Java 属性名之间的驼峰映射 。什么意思？ 比如数据库列名可能是： create_time update_time id_number。
+#  而 Java Employee 类里一般会写成：createTime updateTime idNumber。开启这个配置后，MyBatis 会自动帮你对应上。
+#  所以数据库结果才能顺利装进 Employee 对象。这也是 Mapper 能返回 Employee 的底层细节之一

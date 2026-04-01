@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "sky.jwt")
+@ConfigurationProperties(prefix = "sky.jwt")  //SpringBoot的注解。表示当前类是配置属性类。这个类是用来封装配置文件中的一些配置项
 @Data
 public class JwtProperties {
 

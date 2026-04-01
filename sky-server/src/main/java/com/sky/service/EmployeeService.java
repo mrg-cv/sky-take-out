@@ -1,7 +1,11 @@
 package com.sky.service;
 
+import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
 import com.sky.entity.Employee;
+
+
+// 接口文件，相当于“功能说明书”。
 
 public interface EmployeeService {
 
@@ -10,6 +14,11 @@ public interface EmployeeService {
      * @param employeeLoginDTO
      * @return
      */
-    Employee login(EmployeeLoginDTO employeeLoginDTO);
+    Employee login(EmployeeLoginDTO employeeLoginDTO);  // 提示员工服务类应该有一个登录功能。具体实现放在了EmployeeServiceImpl.java文件中
 
+    /**
+     * 新增员工
+     * @param employeeDTO
+     */
+    void save(EmployeeDTO employeeDTO);
 }

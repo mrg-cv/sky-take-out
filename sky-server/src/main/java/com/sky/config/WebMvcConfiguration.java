@@ -43,6 +43,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      */
     @Bean
     public Docket docket() {
+        log.info("准备生成接口文档...");
         ApiInfo apiInfo = new ApiInfoBuilder()
                 .title("苍穹外卖项目接口文档")
                 .version("2.0")
@@ -62,7 +63,20 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      * @param registry
      */
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        log.info("开始设置静态资源映射...");
         registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 }
+
+/*
+addResourceHandler("/doc.html") 意思是：匹配浏览器访问的 URL 路径 /doc.html
+
+addResourceLocations("classpath:/META-INF/resources/")意思是：去项目运行时的 classpath 路径下的 META-INF/resources/ 目录里找资源文件
+classpath: 可以先简单理解成：Java 项目运行时可访问的资源根路径.很多第三方 jar 包，会把它们的静态页面文件放在这里。
+Knife4j / Swagger 的页面资源，通常就在这个位置。
+
+这两句连起来就是：当访问 /doc.html 时，去 classpath:/META-INF/resources/ 目录里找对应文件
+
+Knife4j 的作用是：把后端接口“可视化”成一个网页文档。Swagger：接口文档这一套规范和生态；Knife4j：基于 Swagger 体系做出来的一个更友好的文档界面工具
+*/
