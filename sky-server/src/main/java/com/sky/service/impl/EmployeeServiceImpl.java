@@ -120,6 +120,32 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> records = page.getResult();
         return new PageResult(total,records);
     }
+
+    /*query 参数也是请求的一部分，路径参数也是请求的一部分，请求体参数也是请求的一部分；它们不是三种不同的“请求”，而是同一个 HTTP 请求里三种不同的放数据位置。
+    路径里嵌值的是路径参数，? 后面键值对的是 query 参数，body 里 JSON/表单的是请求体参数。
+    对应三个注解：@PathVariable、@RequestParam、@RequestBody。
+    例如spring mvc看到这个参数@PathVariable马，那么会从路径中去取这个参数去赋值给方法里的参数变量*/
+
+    /**
+     * 启用禁用员工账号
+     * @param status
+     * @param id
+     */
+    public void startOrStop(Integer status, long id) {
+        // update employee set status = ? where id = ?
+
+        /*构造实体对象employee传统写法如下注释掉的三行
+        Employee employee = new Employee();
+        employee.setStatus(status);
+        employee.setId(id);*/
+
+        // 因为在Employee定义处加了@Builder 构建器注解，所以可以用构建器来构造
+        Employee employee = Employee.builder()
+                .id(id)
+                .status(status)
+                .build();
+        employeeMapper.update(employee);
+    }
 }
 
 /*
