@@ -121,10 +121,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return new PageResult(total,records);
     }
 
-    /*query 参数也是请求的一部分，路径参数也是请求的一部分，请求体参数也是请求的一部分；它们不是三种不同的“请求”，而是同一个 HTTP 请求里三种不同的放数据位置。
-    路径里嵌值的是路径参数，? 后面键值对的是 query 参数，body 里 JSON/表单的是请求体参数。
-    对应三个注解：@PathVariable、@RequestParam、@RequestBody。
-    例如spring mvc看到这个参数@PathVariable马，那么会从路径中去取这个参数去赋值给方法里的参数变量*/
+
 
     /**
      * 启用禁用员工账号
@@ -161,7 +158,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     /**
      * 编辑员工信息
      * @param employeeDTO
-     * @return
      */
     public void update(EmployeeDTO employeeDTO) {
         //之前已经在根据id修改用户的status的功能时，在mapper层写了全面的动态的update的sql语句，但那里的对象是employee不是empoyeeeDYO，所以需要进行对象转换

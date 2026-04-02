@@ -98,6 +98,11 @@ public class EmployeeController {
         return Result.success(pageResult);
     }
 
+
+    /*query 参数也是请求的一部分，路径参数也是请求的一部分，请求体参数也是请求的一部分；它们不是三种不同的“请求”，而是同一个 HTTP 请求里三种不同的放数据位置。
+    路径里嵌值的是路径参数，? 后面键值对的是 query 参数，body 里 JSON/表单的是请求体参数。
+    对应三个注解：@PathVariable、@RequestParam、@RequestBody。@RequestParam常不加，因为Spring MVC能识别
+    例如spring mvc看到这个参数@PathVariable马，那么会从路径中去取这个参数去赋值给方法里的参数变量*/
     /**
      * 启用禁用员工账号
      * @param status

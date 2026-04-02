@@ -48,7 +48,6 @@ public interface EmployeeService {
     /**
      * 编辑员工信息
      * @param employeeDTO
-     * @return
      */
     void update(EmployeeDTO employeeDTO);
 }
