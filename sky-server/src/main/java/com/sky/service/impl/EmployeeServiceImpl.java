@@ -146,6 +146,32 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .build();
         employeeMapper.update(employee);
     }
+
+    /**
+     * 根据id查询员工信息
+     * @param id
+     * @return
+     */
+    public Employee getById(long id) {
+        Employee employee = employeeMapper.getById(id);
+        employee.setPassword("****");
+        return employee;
+    }
+
+    /**
+     * 编辑员工信息
+     * @param employeeDTO
+     * @return
+     */
+    public void update(EmployeeDTO employeeDTO) {
+        //之前已经在根据id修改用户的status的功能时，在mapper层写了全面的动态的update的sql语句，但那里的对象是employee不是empoyeeeDYO，所以需要进行对象转换
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDTO, employee);
+        //因为是修改操作，所以需要添加一下修改时间
+        employee.setUpdateTime(LocalDateTime.now());
+        employee.setUpdateUser(BaseContext.getCurrentId());
+        employeeMapper.update(employee);
+    }
 }
 
 /*
