@@ -87,13 +87,15 @@ public class EmployeeServiceImpl implements EmployeeService {
         //设置密码，默认123456
         employee.setPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));
 
+
+        //因为已经用AOP解决了公共字段自动填充，所以这里的公共属性的赋值操作就不需要一个个set了
         //设置当前记录的创建时间和修改时间
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
+        //employee.setCreateTime(LocalDateTime.now());
+        //employee.setUpdateTime(LocalDateTime.now());
 
         //设置当前记录创建人id和修改人id
-        employee.setCreateUser(BaseContext.getCurrentId());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+        //employee.setCreateUser(BaseContext.getCurrentId());
+        //employee.setUpdateUser(BaseContext.getCurrentId());
 
         employeeMapper.insert(employee);
     }
@@ -163,9 +165,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         //之前已经在根据id修改用户的status的功能时，在mapper层写了全面的动态的update的sql语句，但那里的对象是employee不是empoyeeeDYO，所以需要进行对象转换
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDTO, employee);
+
+        //因为已经用AOP解决了公共字段自动填充，所以这里的公共属性的赋值操作就不需要一个个set了
         //因为是修改操作，所以需要添加一下修改时间
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+//        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setUpdateUser(BaseContext.getCurrentId());
         employeeMapper.update(employee);
     }
 }
